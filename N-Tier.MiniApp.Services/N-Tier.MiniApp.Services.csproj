@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>N_Tier.MiniApp.Services</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\N-Tier.MiniApp.Core\N-Tier.MiniApp.Core.csproj" />
+  </ItemGroup>
+
+</Project>
