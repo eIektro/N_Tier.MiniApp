@@ -14,7 +14,7 @@ Uygulamada örnek olarak kullanılan modeller şu şekildedir. Popüle edilebili
 * FluentValudation (WebAPI)
 * Swagger (WebAPI)
 
-## Bağımlılık Bulunan .NET Paketleri
+### Bağımlılık Bulunan .NET Paketleri
 
 * .NET Framework 4.7.2 (Presentation.WebUI katmanı)
 * .NET Core 3.1 (WebAPI katmanı)
