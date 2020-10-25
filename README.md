@@ -44,3 +44,9 @@
 **Presentation.WebUI** katmanı verilere **WebAPI** aracılığı ile ulaşır. Bu nedenle projeyi çalıştırken bu iki projeyi aynı anda ayağa kaldırmanız gerekecektir. Örnekteki gibi yapabilirsiniz:
 
 ![image](https://drive.google.com/uc?export=view&id=1kQRHXqpJQ1d5VNaOq_eZSoxJkwtesqXq)
+
+## Presentation.WebUI - WebAPI Bağlantısı
+
+**Presentation.WebUI\web.config** dosyasının içerisine **apiBaseAdress** kısmına **WebAPI**'ın bağlantısını tanımlamalısınız. Örnekteki gibi localhost altında çalıştığı portu yazmanız yeterli olacaktır:
+
+![image](https://drive.google.com/uc?export=view&id=1_eVFSbEsRndnF8mTmPDfed1GPxnBT3GT)
