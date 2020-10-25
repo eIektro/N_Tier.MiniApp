@@ -1,5 +1,26 @@
 # N_Tier.MiniApp
 
+## Nedir?
+
+**N_Tier.MiniApp**, katmanlı mimari yapısında oluşturulmuş; **Unit Of Work** ve **Repository** tasarım desenlerini kullanan servisler aracılığıyla veritabanı işlemlerini (Okuma, Yazma, Silme, Güncelleme) gerçekleştiren bir uygulama örneğidir.
+
+### Kullanılan Teknolojiler
+
+Uygulamada örnek olarak kullanılan modeller şu şekildedir. Popüle edilebilir:
+
+* Entity Framework Core (WebAPI katmanında)
+* Npgsql (Data katmanında, Postgres veritabanına erişim için)
+* AutoMapper (WebAPI)
+* FluentValudation (WebAPI)
+* Swagger (WebAPI)
+
+## Bağımlılık Bulunan .NET Paketleri
+
+* .NET Framework 4.7.2 (Presentation.WebUI katmanı)
+* .NET Core 3.1 (WebAPI katmanı)
+* .NET Standart 2.0 (Class Library olan katmanlar için)
+
+
 ## Veritabanı Bağlantısı
 
 **N-Tier.MiniApp.WebAPI** yoluna **appsettings.json** ve **appsettings.Development.json** dosyalarını oluşturun ve içerisine aşağıdaki json'a **bağlantı dizenizi** ekleyerek, kopyalayıp yapıştırın.
