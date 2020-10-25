@@ -2,7 +2,7 @@
 
 ## Veritabanı Bağlantısı
 
-**N-Tier.MiniApp.WebAPI** yoluna **appsettings.json** ve **appsettings.Development.json** dosyalarını oluşturun ve içerisine aşağıdaki json'a **bağlantı dizenizi** ekleyin.
+**N-Tier.MiniApp.WebAPI** yoluna **appsettings.json** ve **appsettings.Development.json** dosyalarını oluşturun ve içerisine aşağıdaki json'a **bağlantı dizenizi** ekleyerek, kopyalayıp yapıştırın.
 
 ```json
 {
