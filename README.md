@@ -50,3 +50,9 @@
 **Presentation.WebUI\web.config** dosyasının içerisine **apiBaseAdress** kısmına **WebAPI**'ın bağlantısını tanımlamalısınız. Örnekteki gibi localhost altında çalıştığı portu yazmanız yeterli olacaktır:
 
 ![image](https://drive.google.com/uc?export=view&id=1_eVFSbEsRndnF8mTmPDfed1GPxnBT3GT)
+
+## Ekran Görüntüleri
+
+### Swagger UI
+
+![image](https://drive.google.com/uc?export=view&id=1c5xmCToi5hNIuz3t1uXcH8SNgaY2uyjv)
