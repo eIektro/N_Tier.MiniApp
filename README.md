@@ -6,8 +6,6 @@
 
 ### Kullanılan Teknolojiler
 
-Uygulamada örnek olarak kullanılan modeller şu şekildedir. Popüle edilebilir:
-
 * Entity Framework Core (WebAPI katmanında)
 * Npgsql (Data katmanında, Postgres veritabanına erişim için)
 * AutoMapper (WebAPI)
