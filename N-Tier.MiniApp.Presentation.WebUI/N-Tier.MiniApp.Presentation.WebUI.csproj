@@ -158,6 +158,7 @@
     <Compile Include="Controllers\GorevlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SirketlerController.cs" />
+    <Compile Include="Core\ApiTransactions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -15,5 +15,8 @@ namespace N_Tier.MiniApp.Presentation.WebUI.ViewModels
         public string Pasword { get; set; }
         public int? Gorev { get; set; }
         public int? Sirket { get; set; }
+
+        public IEnumerable<SirketViewModel> SirketViewModel { get; set; }
+        public IEnumerable<GorevViewModel> GorevViewModel { get; set; }
     }
 }

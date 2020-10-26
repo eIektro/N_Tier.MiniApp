@@ -1,4 +1,5 @@
-﻿using N_Tier.MiniApp.Presentation.WebUI.ViewModels;
+﻿using N_Tier.MiniApp.Presentation.WebUI.Core;
+using N_Tier.MiniApp.Presentation.WebUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,25 +17,9 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
 
         public async Task<ActionResult> Index()
         {
-            IEnumerable<GorevViewModel> gorevs = null;
+            ApiTransactions apiTransactions = new ApiTransactions();
 
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(apiBaseAddress);
-
-                var httpResponse = await client.GetAsync("Gorev");
-
-                if (httpResponse.IsSuccessStatusCode)
-                {
-                    gorevs = await httpResponse.Content.ReadAsAsync<IList<GorevViewModel>>();
-
-                }
-                else
-                {
-                    gorevs = Enumerable.Empty<GorevViewModel>();
-                    ModelState.AddModelError(string.Empty, "Server error.");
-                }
-            }
+            IEnumerable<GorevViewModel> gorevs = await apiTransactions.tumGorevleriGetir();
 
             return View(gorevs);
         }

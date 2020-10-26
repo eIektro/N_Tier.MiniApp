@@ -43,20 +43,21 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Pasword)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Pasword)
-        </dd>
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.Sirket)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Sirket)
+            @*@Html.DisplayFor(model => model.Sirket)*@
+            @ViewBag.SirketAdi
         </dd>
 
         <dt>
@@ -64,7 +65,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Gorev)
+            @*@Html.DisplayFor(model => model.Gorev)*@
+            @ViewBag.GorevAdi
         </dd>
 
     </dl>

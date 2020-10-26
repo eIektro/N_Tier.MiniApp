@@ -1,4 +1,5 @@
-﻿using N_Tier.MiniApp.Presentation.WebUI.ViewModels;
+﻿using N_Tier.MiniApp.Presentation.WebUI.Core;
+using N_Tier.MiniApp.Presentation.WebUI.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -28,7 +29,7 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     kullanicis = await httpResponse.Content.ReadAsAsync<IList<KullaniciViewModel>>();
-
+                    
                 }
                 else
                 {
@@ -37,6 +38,7 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
                 }
             }
 
+            
             return View(kullanicis);
         }
 
@@ -44,16 +46,43 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
         {
 
             KullaniciViewModel kullanici = null;
+            SirketViewModel sirket = null;
+            GorevViewModel gorev = null;
+
+            String sirketAdi = "";
+            String gorevAdi = "";
 
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(apiBaseAddress);
 
-                var httpResponse = await client.GetAsync($"Kullanici/{Id}");
+                var httpResponseKullanici = await client.GetAsync($"Kullanici/{Id}");
+                
 
-                if (httpResponse.IsSuccessStatusCode)
+                if (httpResponseKullanici.IsSuccessStatusCode)
                 {
-                    kullanici = await httpResponse.Content.ReadAsAsync<KullaniciViewModel>();
+                    kullanici = await httpResponseKullanici.Content.ReadAsAsync<KullaniciViewModel>();
+
+                    var httpResponseSirket = await client.GetAsync($"Sirket/{kullanici.Sirket}");
+
+                    if (httpResponseSirket.IsSuccessStatusCode)
+                    {
+                        sirket = await httpResponseSirket.Content.ReadAsAsync<SirketViewModel>();
+                        sirketAdi = sirket.SirketAdi;
+                        ViewBag.SirketAdi = sirketAdi;
+                    }
+
+                    if (kullanici.Gorev != null)
+                    {
+                        var httpResponseGorev = await client.GetAsync($"Gorev/{kullanici.Gorev}");
+
+                        if (httpResponseGorev.IsSuccessStatusCode)
+                        {
+                            gorev = await httpResponseGorev.Content.ReadAsAsync<GorevViewModel>();
+                            gorevAdi = gorev.GorevAdi;
+                            ViewBag.GorevAdi = gorevAdi;
+                        } 
+                    }
                 }
                 else
                 {
@@ -72,7 +101,11 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
+            ApiTransactions apiTransactions = new ApiTransactions();
+            IEnumerable < SirketViewModel > sirkets = await apiTransactions.tumSirketleriGetir();
+            IEnumerable<GorevViewModel> gorevs = await apiTransactions.tumGorevleriGetir();
             KullaniciViewModel kullanici = null;
+
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(apiBaseAddress);
@@ -82,6 +115,8 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     kullanici = await httpResponse.Content.ReadAsAsync<KullaniciViewModel>();
+                    kullanici.SirketViewModel = sirkets;
+                    kullanici.GorevViewModel = gorevs;
                 }
                 else
                 {
@@ -163,20 +198,27 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
             return View();
         }
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            ApiTransactions apiTransactions = new ApiTransactions();
+            IEnumerable<SirketViewModel> sirkets = await apiTransactions.tumSirketleriGetir();
+            IEnumerable<GorevViewModel> gorevs = await apiTransactions.tumGorevleriGetir();
+            var model = new CreateKullaniciViewModel();
+            model.GorevViewModel = gorevs;
+            model.SirketViewModel = sirkets;
+            return View(model);
         }
 
         [HttpPost]
         public async Task<ActionResult> Create(CreateKullaniciViewModel kullaniciResource)
         {
+          
             if (ModelState.IsValid)
             {
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(apiBaseAddress);
-
+                    
                     var httpResponse = await client.PostAsJsonAsync("Kullanici", kullaniciResource);
                     if (httpResponse.IsSuccessStatusCode)
                     {
@@ -190,5 +232,6 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
             }
             return View(kullaniciResource);
         }
+
     }
 }
