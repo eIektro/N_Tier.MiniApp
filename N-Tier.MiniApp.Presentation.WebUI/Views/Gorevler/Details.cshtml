@@ -1,0 +1,35 @@
+﻿@model N_Tier.MiniApp.Presentation.WebUI.ViewModels.GorevViewModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GorevViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GorevAdi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GorevAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GorevTanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GorevTanimi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

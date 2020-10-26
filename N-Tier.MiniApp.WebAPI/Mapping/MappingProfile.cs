@@ -23,6 +23,8 @@ namespace N_Tier.MiniApp.WebAPI.Mapping
             /* MVC Controller daki Create işlemi için oluşturduğum DTO' yu mapliyorum */
             // TO-DO: Kullanici oluşturma işlemi için ekledim diğer işlemler için de eklemeliyim.
             CreateMap<CreateKullaniciDTO, Kullanici>();
+            CreateMap<CreateGorevDTO, Gorev>();
+            CreateMap<CreateSirketDTO, Sirket>();
         }
     }
 }
