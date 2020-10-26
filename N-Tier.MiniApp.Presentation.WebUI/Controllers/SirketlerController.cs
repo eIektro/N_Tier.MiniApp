@@ -16,6 +16,7 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
 
         public async Task<ActionResult> Index()
         {
+            
             IEnumerable<SirketViewModel> sirkets = null;
 
             using (var client = new HttpClient())
@@ -27,7 +28,7 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     sirkets = await httpResponse.Content.ReadAsAsync<IList<SirketViewModel>>();
-
+                    
                 }
                 else
                 {
@@ -43,6 +44,8 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
         {
 
             SirketViewModel sirket = null;
+            string imgBase64Data = "";
+            string imgDataURL = "";
 
             using (var client = new HttpClient())
             {
@@ -53,6 +56,9 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     sirket = await httpResponse.Content.ReadAsAsync<SirketViewModel>();
+                    imgBase64Data = Convert.ToBase64String(sirket.Logo);
+                    imgDataURL = string.Format("data:image/png;base64,{0}", imgBase64Data);
+                    ViewBag.ImageData = imgDataURL;
                 }
                 else
                 {
@@ -72,6 +78,8 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
         public async Task<ActionResult> Edit(int id)
         {
             SirketViewModel sirket = null;
+            string imgBase64Data = "";
+            string imgDataURL = "";
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(apiBaseAddress);
@@ -81,6 +89,9 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     sirket = await httpResponse.Content.ReadAsAsync<SirketViewModel>();
+                    imgBase64Data = Convert.ToBase64String(sirket.Logo);
+                    imgDataURL = string.Format("data:image/png;base64,{0}", imgBase64Data);
+                    ViewBag.ImageData = imgDataURL;
                 }
                 else
                 {
@@ -97,6 +108,18 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(int id, CreateSirketViewModel sirketResource)
         {
+            var file = Request.Files["Image"];
+            if (file != null)
+            {
+                byte[] fileBytes = new byte[file.ContentLength];
+                file.InputStream.Read(fileBytes, 0, file.ContentLength);
+                sirketResource.Logo = fileBytes;
+            }
+            else
+            {
+                // ... error handling here
+            }
+
             if (ModelState.IsValid)
             {
                 using (var client = new HttpClient())
@@ -170,6 +193,19 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(CreateSirketViewModel sirketResource)
         {
+            //TO-DO: Yüklenen resimler kırpılacak. Veya yükleme kısmında Javascrip ile validasyon yapılabilir.
+            var file = Request.Files["Image"];
+            if (file != null)
+            {
+                byte[] fileBytes = new byte[file.ContentLength];
+                file.InputStream.Read(fileBytes, 0, file.ContentLength);
+                sirketResource.Logo = fileBytes;
+            }
+            else
+            {
+                // ... error handling here
+            }
+
             if (ModelState.IsValid)
             {
                 using (var client = new HttpClient())
@@ -190,4 +226,5 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
             return View(sirketResource);
         }
     }
+
 }

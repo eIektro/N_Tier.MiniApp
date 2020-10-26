@@ -162,6 +162,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ByteImageResize.cs" />
+    <Compile Include="Utilities\HtmlExtensions.cs" />
     <Compile Include="ViewModels\CreateGorevViewModel.cs" />
     <Compile Include="ViewModels\CreateKullaniciViewModel.cs" />
     <Compile Include="ViewModels\CreateSirketViewModel.cs" />

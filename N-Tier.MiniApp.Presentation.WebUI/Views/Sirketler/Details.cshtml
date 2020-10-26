@@ -12,6 +12,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.SirketAdi)
         </dt>
 
@@ -48,8 +55,10 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Logo)
+            <img src="@ViewBag.ImageData">
         </dd>
+
+
 
     </dl>
 </div>

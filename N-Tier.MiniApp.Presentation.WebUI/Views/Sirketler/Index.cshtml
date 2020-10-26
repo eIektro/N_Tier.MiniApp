@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<N_Tier.MiniApp.Presentation.WebUI.ViewModels.SirketViewModel>
+    @using N_Tier.MiniApp.Presentation.WebUI.Utilities
 
 @{
     ViewBag.Title = "Index";
@@ -12,6 +13,9 @@
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.SirketAdi)
         </th>
@@ -33,6 +37,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.SirketAdi)
         </td>
         <td>
@@ -45,7 +52,7 @@
             @Html.DisplayFor(modelItem => item.Adres)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Logo)
+            @Html.Image(item.Logo)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id  }) |
