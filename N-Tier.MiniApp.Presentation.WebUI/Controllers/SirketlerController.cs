@@ -117,7 +117,7 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
             }
             else
             {
-                // ... error handling here
+                // TO-DO: Error handling
             }
 
             if (ModelState.IsValid)
@@ -180,7 +180,7 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
                     return RedirectToAction("Index");
                 }
                 else
-                    ModelState.AddModelError(string.Empty, "Server error.");
+                    ModelState.AddModelError(string.Empty, "Kullanıcılar tarafından referans edilen şirket silinemez."); //TO-DO: Bu kısıma daha efektif bir çözüm getirilecek.
             }
             return View();
         }
@@ -191,6 +191,7 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateSirketViewModel sirketResource)
         {
             //TO-DO: Yüklenen resimler kırpılacak. Veya yükleme kısmında Javascrip ile validasyon yapılabilir.

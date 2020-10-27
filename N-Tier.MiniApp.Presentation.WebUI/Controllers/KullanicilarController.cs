@@ -133,11 +133,17 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
         [HttpPost]
         public async Task<ActionResult> Edit(int id, CreateKullaniciViewModel kullaniciResource)
         {
+            if (kullaniciResource.Pasword != null || kullaniciResource.Pasword != "") //TO-DO: Daha mantıklı password validation
+            {
+                kullaniciResource.Pasword = Utilities.EnDec.Encryption(kullaniciResource.Pasword);
+            }
+
             if (ModelState.IsValid)
             {
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(apiBaseAddress);
+                   
                     var httpResponse = await client.PutAsJsonAsync($"Kullanici/{id}", kullaniciResource);
                     if (httpResponse.IsSuccessStatusCode)
                     {
@@ -210,9 +216,14 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateKullaniciViewModel kullaniciResource)
         {
-          
+            if (kullaniciResource.Pasword != null || kullaniciResource.Pasword != "") 
+            {
+                kullaniciResource.Pasword = Utilities.EnDec.Encryption(kullaniciResource.Pasword);
+            }
+
             if (ModelState.IsValid)
             {
                 using (var client = new HttpClient())

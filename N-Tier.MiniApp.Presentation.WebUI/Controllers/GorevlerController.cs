@@ -142,7 +142,7 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
                     return RedirectToAction("Index");
                 }
                 else
-                    ModelState.AddModelError(string.Empty, "Server error.");
+                    ModelState.AddModelError(string.Empty, "Kullanıcılar tarafından referans edilen görev silinemez."); //Bu kısıma daha efektif bir çözüm getirilecek.
             }
             return View();
         }
@@ -153,6 +153,7 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateGorevViewModel gorevResource)
         {
             if (ModelState.IsValid)

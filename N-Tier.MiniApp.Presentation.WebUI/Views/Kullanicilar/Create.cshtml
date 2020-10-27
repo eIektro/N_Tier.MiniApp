@@ -61,6 +61,7 @@
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.Sirket, new SelectList(Model.SirketViewModel, "Id", "SirketAdi"), "Sirket Seçiniz", new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Gorev, "", new { @class = "text-danger" })
+            <a href="~/Sirketler/Create">Şirket Ekle</a>
         </div>
     </div>
 
@@ -69,6 +70,7 @@
         <div class="col-md-10">
             @Html.DropDownListFor(model => model.Gorev, new SelectList(Model.GorevViewModel, "Id", "GorevAdi"), "Görev Seçiniz", new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Gorev, "", new { @class = "text-danger" })
+            <a href="~/Gorevler/Create">Görev Ekle</a>
         </div>
     </div>
 
