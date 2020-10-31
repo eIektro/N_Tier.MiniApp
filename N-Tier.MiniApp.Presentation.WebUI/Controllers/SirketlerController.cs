@@ -143,6 +143,9 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
         public async Task<ActionResult> Delete(int id)
         {
             SirketViewModel sirket = null;
+            string imgBase64Data = "";
+            string imgDataURL = "";
+
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(apiBaseAddress);
@@ -152,6 +155,9 @@ namespace N_Tier.MiniApp.Presentation.WebUI.Controllers
                 if (httpResponse.IsSuccessStatusCode)
                 {
                     sirket = await httpResponse.Content.ReadAsAsync<SirketViewModel>();
+                    imgBase64Data = Convert.ToBase64String(sirket.Logo);
+                    imgDataURL = string.Format("data:image/png;base64,{0}", imgBase64Data);
+                    ViewBag.ImageData = imgDataURL;
                 }
                 else
                 {
