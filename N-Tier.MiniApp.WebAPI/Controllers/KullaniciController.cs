@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using N_Tier.MiniApp.Core.Models;
 using N_Tier.MiniApp.Core.Services;
@@ -14,6 +15,7 @@ namespace N_Tier.MiniApp.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class KullaniciController : ControllerBase
     {
         private readonly IKullaniciService _kullaniciService;

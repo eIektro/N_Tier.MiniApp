@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "N-Tier.MiniApp.WebAPI", "N-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "N-Tier.MiniApp.Presentation.WebUI", "N-Tier.MiniApp.Presentation.WebUI\N-Tier.MiniApp.Presentation.WebUI.csproj", "{0BCDC7A6-8B4D-42F3-9534-2A05F7C06A03}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "N.Tier.MiniApp.Presentation.VuejsUI", "N-Tier.MiniApp.Presentation.VuejsUI\N.Tier.MiniApp.Presentation.VuejsUI.njsproj", "{00FFDEB2-C10D-4B10-ADC5-35D08271E92A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0BCDC7A6-8B4D-42F3-9534-2A05F7C06A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BCDC7A6-8B4D-42F3-9534-2A05F7C06A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BCDC7A6-8B4D-42F3-9534-2A05F7C06A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00FFDEB2-C10D-4B10-ADC5-35D08271E92A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00FFDEB2-C10D-4B10-ADC5-35D08271E92A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00FFDEB2-C10D-4B10-ADC5-35D08271E92A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00FFDEB2-C10D-4B10-ADC5-35D08271E92A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

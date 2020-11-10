@@ -23,6 +23,8 @@ namespace N_Tier.MiniApp.WebAPI
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,6 +36,13 @@ namespace N_Tier.MiniApp.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                                  {
+                                      builder.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                                  });
+            });
             services.AddControllers();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddDbContext<MiniAppDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("PostgresConnection"), x => x.MigrationsAssembly("N-Tier.MiniApp.Data")));
@@ -45,6 +54,8 @@ namespace N_Tier.MiniApp.WebAPI
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "N-Tier Mini App (Sirket - Kullanici - Gorev) - M.E.K", Version = "v1" });
             });
             services.AddAutoMapper(typeof(Startup));
+            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,9 +66,13 @@ namespace N_Tier.MiniApp.WebAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
@@ -73,6 +88,10 @@ namespace N_Tier.MiniApp.WebAPI
                 c.RoutePrefix = "";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "N-Tier Mini App V1 - M.E.K");
             });
+
+            
+
+
         }
     }
 }
