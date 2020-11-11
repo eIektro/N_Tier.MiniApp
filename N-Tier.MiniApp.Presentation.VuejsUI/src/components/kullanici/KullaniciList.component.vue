@@ -22,21 +22,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="kullanici in kullanicis"
-                  :key="kullanici.id">
-                <td>{{ kullanici.isim }}</td>
-                <td>{{ kullanici.soyisim }}</td>
-                <td>{{ kullanici.dogumtarihi }}</td>
-                <td>
-                  <b-button variant="default">Details</b-button>
-                </td>
-                <td>
-                  <b-button variant="success">Update</b-button>
-                </td>
-                <td>
-                  <b-button variant="danger">Delete</b-button>
-                </td>
-              </tr>
+              <kullanici-list-row
+                                  v-for="kullanici in kullanicis"
+                                  :key="kullanici.id"
+                                  :kullanici="kullanici"
+                                  @details="detailsKullanici"
+                                  @update="updateKullanici"
+                                  @delete="deleteKullanici"/>
+
+              
             </tbody>
           </table>
         </div>
@@ -45,10 +39,14 @@
   </div>
 </template>
 <script>
-import kullaniciService from "../../api-services/kullanici.service";
+  import kullaniciService from "../../api-services/kullanici.service";
+  import KullaniciListRow from "@/components/kullanici/KullaniciListRow";
 
 export default {
     name: 'KullaniciList',
+    components: {
+      KullaniciListRow
+    },
     data() {
       return {
         kullanicis: []
@@ -58,6 +56,17 @@ export default {
       kullaniciService.getAll().then((response) => {
         this.kullanicis = response.data;
       });
+    },
+    methods: {
+      detailsKullanici(kullaniciId) {
+        console.log('details', kullaniciId);
+      },
+      updateKullanici(kullaniciId) {
+        console.log('update', kullaniciId);
+      },
+      deleteKullanici(kullaniciId) {
+        console.log('delete', kullaniciId);
+      }
     }
 };
 </script>
